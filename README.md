@@ -1,1 +1,161 @@
-# TaxReturnProject
+# California Tax Return Assistant
+
+A desktop Python application for preparing federal (Form 1040) and California state (Form 540) tax returns with support for W-2 and 1099 PDF imports.
+
+## Features
+
+- **Import Tax Forms**: Import W-2 and 1099 forms directly from PDF files
+- **Manual Entry**: Add tax forms manually if PDF import is not available
+- **Tax Calculation**: Calculate federal and California state taxes using current tax brackets
+- **PDF Generation**: Generate Form 1040 and Form 540 PDFs ready for review
+- **Summary Reports**: Generate detailed text or HTML summary reports
+- **Save/Load**: Save and load tax returns as JSON files
+- **Desktop GUI**: User-friendly Tkinter-based interface
+
+## Installation
+
+### Prerequisites
+
+- Python 3.8 or higher
+- macOS, Windows, or Linux
+
+### Setup
+
+1. Clone or download this repository:
+   ```bash
+   cd /path/to/TaxProgram
+   ```
+
+2. Install required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Usage
+
+### Running the Application
+
+```bash
+python main.py
+```
+
+### Basic Workflow
+
+1. **Enter Personal Information**
+   - Go to the "Personal Info" tab
+   - Enter your name, address, SSN
+   - Select your filing status
+
+2. **Add Income Forms**
+   - Go to the "Income" tab
+   - Click "Import W-2 PDF" or "Add W-2 Manually"
+   - Click "Import 1099 PDF" or "Add 1099 Manually"
+   - Repeat for all your tax forms
+
+3. **Configure Deductions**
+   - Go to the "Deductions" tab
+   - Choose standard or itemized deductions
+   - Enter any income adjustments (IRA, student loan interest, etc.)
+
+4. **Calculate Taxes**
+   - Go to the "Results" tab
+   - Click "Calculate Taxes"
+   - Review your federal and California tax results
+
+5. **Generate Output**
+   - Click "Generate PDF Forms" to create Form 1040 and Form 540 PDFs
+   - Click "Generate Summary" to create a detailed report
+   - Save your tax return using File > Save or File > Save As
+
+## Project Structure
+
+```
+TaxProgram/
+├── main.py                      # Application entry point
+├── requirements.txt             # Python dependencies
+├── README.md                    # This file
+├── src/
+│   ├── ui/                      # Desktop GUI (Tkinter)
+│   │   └── main_window.py       # Main application window
+│   ├── pdf_parser/              # PDF import functionality
+│   │   ├── base_parser.py       # Base parser class
+│   │   ├── w2_parser.py         # W-2 form parser
+│   │   └── form1099_parser.py   # 1099 forms parser
+│   ├── tax_calculator/          # Tax calculation engine
+│   │   ├── federal_calculator.py   # Federal tax calculations
+│   │   ├── california_calculator.py # CA state tax calculations
+│   │   └── tax_brackets.py          # Tax bracket definitions
+│   ├── models/                   # Data models
+│   │   ├── w2.py                # W-2 data structure
+│   │   ├── form1099.py          # 1099 data structures
+│   │   └── tax_return.py        # Complete tax return data
+│   └── pdf_generator/           # Output PDF generation
+│       ├── form1040_generator.py   # Generate Form 1040 PDF
+│       ├── ca540_generator.py      # Generate CA Form 540 PDF
+│       └── summary_generator.py     # Generate summary reports
+└── data/
+    └── tax_tables/              # Static tax bracket data
+        ├── federal_2025.json
+        └── california_2025.json
+```
+
+## Tax Forms Supported
+
+### W-2 Wage and Tax Statement
+- Employer information
+- Employee information
+- Wages, tips, other compensation
+- Federal, Social Security, Medicare tax
+- State tax withholding (including California)
+
+### 1099-NEC
+- Nonemployee compensation
+- Federal tax withholding
+
+### 1099-INT
+- Interest income
+- Tax-exempt interest
+- Federal tax withholding
+
+### 1099-DIV
+- Ordinary dividends
+- Qualified dividends
+- Capital gain distributions
+- Federal tax withholding
+
+## Tax Year Support
+
+The application currently supports the 2025 tax year with the following tax brackets:
+
+### Federal Standard Deductions (2025)
+- Single: $14,600
+- Married Filing Jointly: $29,200
+- Married Filing Separately: $14,600
+- Head of Household: $21,900
+
+### California Standard Deductions (2025)
+- Single: $5,063
+- Married Filing Jointly: $10,126
+- Married Filing Separately: $5,063
+- Head of Household: $8,899
+
+## Limitations
+
+- PDF parsing accuracy depends on form layout; some forms may require manual data entry
+- Only supports basic Form 1040 (no Schedule A, B, C, D, E, etc.)
+- Only supports California state tax
+- Tax calculations are estimates and should be verified
+
+## Disclaimer
+
+**IMPORTANT**: This application is provided for informational purposes only. The generated tax forms and calculations are estimates and should not be used for official tax filing without verification. For official tax filing, please use IRS-approved tax software or consult a qualified tax professional.
+
+The authors and contributors of this software are not responsible for any errors, omissions, or inaccuracies in the tax calculations or forms generated by this application.
+
+## License
+
+This project is provided as-is for personal use.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit issues, pull requests, or suggestions for improvements.
